@@ -41,24 +41,49 @@ When it comes to security the main vector of attack is how the HTML is parsed.
 
 One problem is when a firewall parses HTML differently then how the browser parses it, which can cause a vector of attack. E.g. `<script/xss src...` may not be seen as a script tag by a bad XSS filter but Firefox HTML parser to treat the slash as whitespace.
 
-Browsers sometime clean up after authors which can be exploited. e.g.:
+Browsers sometimes try to be smart and clean up after authors which can be exploited. e.g.:
 
 - \<script\> tag on its own will be automatically closed.
 - a tag missing its closing angle bracket will be auto closed by the next angle bracket.
 
-Either using another type of encoding e.g. UTF-7 or when browsers try to be smart and accept
-
 ### Content Sniffing
 
-### Same origin
+Content sniffing is when the browser uses heuristics to determine what type of data is it currently receiving e.g. MIME type sniffing to determine the type of file, Encoding sniffing to check is the encoding ASCII or UTF-8 or something else. It then uses the determined type to base how the browser processed that data.
+
+#### MIME Sniffing
+
+This is no longer a real issue on new browsers. But the cause of the issue is that the browser does not only look at the content-type header and for example if the data contained enough HTML it would parse it as HTML. So an image shared with another user with enough HTML in it would get parsed as HTML and can be used for an XSS attack.
+
+#### Encoding Sniffing
+
+If you do not define the encoding of the page the browser will try and determine it for you. This can be used to pass UTF-7 encoded data that will pass web firewalls that are encoding HTML code but it will be parsed by older browsers as valid HTML.
+
+### Same-Origin Policy (SOP)
 
 This is the main way you are protected on the internet. Websites can only read data they generated and can only see the DOM that belongs to them.
 
 One new thing I learned here is that you can modify the DOM of another tab if you have a reference and you have the same origin.
 
+#### Origin Matching
+
+- Protocol must match
+- Port number must match
+- Domains must be an exact match
+  - No using of wildcards and no subdomain walking
+
+#### SOP Loosening
+
+Developers can loosen the grip of SOP by:
+
+- Changing the document.domain
+- Posting messages between windows
+- By using CORS
+
+All of these methods open up avenues for attack. E.g. Anyone can call postMessage into an IFrame.
+
 #### Cross origin resource sharing
 
-This allows us to make AJAX calls across domains.
+This allows us to make AJAX calls outside of your origin using special headers to signify where the request originates, what custom headers are added, if cookies should be forwarded, etc.
 
 ## Common attacks
 
