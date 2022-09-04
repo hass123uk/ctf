@@ -218,21 +218,21 @@ The simplest way to detect it is using:
 ' and 0='1 --This returns no rows
 ```
 
-#### Exfiltrate If the goal is to get data out of the system:
+#### Exfiltrate
 
-UNION is a simple way to do so, take this query:
+If the goal is to get data out of the system `UNION` is a simple way to do so, take this query:
 
 ```sql
 SELECT foo, bar, baz FROM some_table
 where foo='some input'
 ```
 
-Knowing that we have three columns of data we could do an SQLi payload of:
+Knowing that we have three columns of data we could use SQLi to try and get to to this query:
 
 ```sql
 SELECT foo, bar, baz FROM some_table
 where foo='1'
-UNION select of 1,2,3; --';
+UNION select 1,2,3; --';
 ```
 
 This will return an extra row. We can use this to select data from other tables too.
