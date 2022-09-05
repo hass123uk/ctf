@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "python -m http.server &>/dev/null & node csrf/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
