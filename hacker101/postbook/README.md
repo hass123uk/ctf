@@ -1,14 +1,26 @@
-# Encoding
+# Postbook CTF
 
-hint: The cookie allows you to stay signed in. Can you figure out how they work so you can sign in to user with ID 1?
+Flag0 -- Found
+The person with username "user" has a very easy password...
+It was password :D
 
-Cookie: c81e728d9d4c2f636f067f89cc14862c
+Flag1 -- Found
+Try viewing your own post and then see if you can change the ID
 
-Help:
-https://vm-thijs.ewi.utwente.nl/ctf/rsa
+Flag2 -- Found
+You should definitely use "Inspect Element" on the form when creating a new post
+Remember to check for hidden inputs in forms.
 
-Delete id:
+Flag3 -- Found
+189 \* 5 = the id for a hidden post.
 
-https://a37ed11cc789cbca9e996e05610199b4.ctf.hacker101.com/index.php?page=delete.php&id=d3d9446802a44259755d38e6d163e820
+Flag4 -- Found
+You can edit your own posts, what about someone else's?
 
-d3d9446802a44259755d38e6d163e820
+Flag5 -- Found
+The cookie allows you to stay signed in. Can you figure out how they work so you can sign in to user with ID 1?
+It was an MD5 hash of the user id. Used an online tool to brute force the MD5 hash.
+
+Flag6 -- Found
+Deleting a post seems to take an ID that is not a number. Can you figure out what it is?
+It was the MD5 hash of the post id.
