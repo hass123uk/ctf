@@ -31,7 +31,7 @@ Of course!!
 
 It was possible to do an XSS attack on the pet title which would show up on the landing and cart page. So setting a script on the name and then viewing it in the cart showed the flag.
 
-## flag2 not found
+## flag2 found
 
 /login I needed to get into the cms.
 
